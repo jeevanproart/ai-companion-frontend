@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+// API base URL
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+
 const VoiceSelector = ({ selectedVoice, onVoiceChange }) => {
     const [voices, setVoices] = useState([]);
 
     useEffect(() => {
         const fetchVoices = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/voices');
+                const response = await axios.get(`${API_URL}/voices`);
                 setVoices(response.data);
             } catch (error) {
                 console.error("Failed to fetch voices", error);
