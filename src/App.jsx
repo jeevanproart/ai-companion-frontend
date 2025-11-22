@@ -9,7 +9,7 @@ import { MessageSquare, Heart, Menu } from 'lucide-react';
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 function App() {
-  const [selectedVoice, setSelectedVoice] = useState("en-US-AnaNeural");
+  const [selectedVoice, setSelectedVoice] = useState("en-US-AriaNeural"); // 💋 Hottest voice by default
   const { user } = useUser();
 
   // Session state

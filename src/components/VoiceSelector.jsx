@@ -21,11 +21,11 @@ const VoiceSelector = ({ selectedVoice, onVoiceChange }) => {
 
     return (
         <div className="flex items-center gap-2">
-            <label className="text-sm text-gray-400">Voice:</label>
+            <label className="text-sm font-semibold text-pink-400">🎤 Her Voice:</label>
             <select
                 value={selectedVoice}
                 onChange={(e) => onVoiceChange(e.target.value)}
-                className="bg-gray-700 text-white rounded px-2 py-1 text-sm border border-gray-600 focus:outline-none focus:border-pink-500"
+                className="bg-gray-700 text-white rounded-lg px-3 py-2 text-sm border border-pink-500/30 focus:outline-none focus:border-pink-500 hover:bg-gray-600 transition-colors cursor-pointer"
             >
                 {voices.map((voice) => (
                     <option key={voice.id} value={voice.id}>
