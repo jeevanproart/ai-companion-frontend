@@ -1,17 +1,75 @@
-# React + Vite
+# AI Companion - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![AI Companion Banner](https://images.unsplash.com/photo-1675271591211-126ad94e495d?q=80&w=2000&auto=format&fit=crop)
 
-Currently, two official plugins are available:
+A premium, next-generation AI companionship platform featuring realistic voice interaction, uncensored conversations, and smart memory. Built with React, Vite, and Tailwind CSS.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## React Compiler
+-   **🎙️ Natural Voice Interaction**: High-quality neural TTS with play, pause, and seek controls.
+-   **🔓 Uncensored & Open**: Designed for open, honest, and intimate conversations without arbitrary filters.
+-   **🧠 Smart Memory**: Automatically summarizes conversations and remembers context across sessions.
+-   **🎨 Premium UI**: Glassmorphism design, smooth animations, and a responsive layout.
+-   **🔐 Secure Authentication**: Integrated with Clerk for secure user management.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tech Stack
 
-## Expanding the ESLint configuration
+-   **Framework**: React 18 + Vite
+-   **Styling**: Tailwind CSS v4 + Lucide React Icons
+-   **Fonts**: Outfit (Google Fonts)
+-   **State Management**: React Hooks
+-   **Authentication**: Clerk
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# ai-companion-frontend
+## 🚀 Getting Started
+
+### Prerequisites
+
+-   Node.js (v18 or higher)
+-   npm or yarn
+
+### Installation
+
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/jeevanproart/ai-companion-frontend.git
+    cd ai-companion-frontend
+    ```
+
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
+
+3.  Set up environment variables:
+    Create a `.env` file in the root directory and add your Clerk and API keys:
+    ```env
+    VITE_CLERK_PUBLISHABLE_KEY=your_clerk_key
+    VITE_API_URL=http://localhost:8000
+    ```
+
+4.  Start the development server:
+    ```bash
+    npm run dev
+    ```
+
+## 📱 Project Structure
+
+```
+src/
+├── components/
+│   ├── AudioPlayer.jsx    # Custom audio player with seek bar
+│   ├── ChatBox.jsx        # Main chat interface
+│   ├── LandingPage.jsx    # Premium landing page with animations
+│   ├── Sidebar.jsx        # Chat history and session management
+│   └── VoiceSelector.jsx  # Voice selection dropdown
+├── App.jsx                # Main application logic and routing
+└── index.css              # Global styles and Tailwind configuration
+```
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is licensed under the MIT License.

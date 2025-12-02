@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { Send, Mic, Volume2 } from 'lucide-react';
+import AudioPlayer from './AudioPlayer';
 
 // API base URL
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
@@ -9,6 +10,7 @@ const ChatBox = ({ selectedVoice, sessionId }) => {
     const [messages, setMessages] = useState([]);
     const [input, setInput] = useState("");
     const [loading, setLoading] = useState(false);
+    const [audioUrls, setAudioUrls] = useState({}); // Store audio URLs for messages
     const messagesEndRef = useRef(null);
 
     const scrollToBottom = () => {
@@ -63,7 +65,9 @@ const ChatBox = ({ selectedVoice, sessionId }) => {
         }
     };
 
-    const playAudio = async (text) => {
+    const fetchAudio = async (text, messageId) => {
+        if (audioUrls[messageId]) return; // Already fetched
+
         try {
             const response = await axios.post(`${API_URL}/speak`, {
                 text: text,
@@ -73,8 +77,7 @@ const ChatBox = ({ selectedVoice, sessionId }) => {
             });
 
             const audioUrl = URL.createObjectURL(response.data);
-            const audio = new Audio(audioUrl);
-            audio.play();
+            setAudioUrls(prev => ({ ...prev, [messageId]: audioUrl }));
         } catch (error) {
             console.error("TTS error", error);
         }
@@ -91,12 +94,18 @@ const ChatBox = ({ selectedVoice, sessionId }) => {
                             }`}>
                             <p>{msg.content}</p>
                             {msg.role === 'assistant' && (
-                                <button
-                                    onClick={() => playAudio(msg.content)}
-                                    className="mt-2 text-xs flex items-center gap-1 text-gray-400 hover:text-white transition-colors"
-                                >
-                                    <Volume2 size={14} /> Read Aloud
-                                </button>
+                                <div className="mt-2">
+                                    {!audioUrls[idx] ? (
+                                        <button
+                                            onClick={() => fetchAudio(msg.content, idx)}
+                                            className="text-xs flex items-center gap-1 text-gray-400 hover:text-white transition-colors"
+                                        >
+                                            <Volume2 size={14} /> Play Voice
+                                        </button>
+                                    ) : (
+                                        <AudioPlayer audioUrl={audioUrls[idx]} />
+                                    )}
+                                </div>
                             )}
                         </div>
                     </div>
